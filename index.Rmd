@@ -39,7 +39,7 @@ In a world of increasing **complexity and fragmentation**, with a plethora of **
 
 ## 2. What?
         
-The [**Content Trend Explorer and Forecaster**](http://sakal.li:3838/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
+The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
 
 1. Defining minimum and maximum values for item **share count**.
 1. Defining **share velocity**, ie. how many times the url has been shared per hourl.
@@ -252,5 +252,5 @@ ggplot(data=singleU, aes(x=timestamp, y=count, col=type)) +
 ```
 
 
-[Go to the app!](http://sakal.li:3838/shinyapp)
+[Go to the app!](http://sakal.li/shinyapp)
 
