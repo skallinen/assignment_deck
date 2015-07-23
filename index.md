@@ -42,10 +42,10 @@ In a world of increasing **complexity and fragmentation**, with a plethora of **
 The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
 
 1. Defining minimum and maximum values for item **share count**.
-1. Defining **share velocity**, ie. how many times the url has been shared per hourl.
-1. Defining **timeperdiod** by setting how many hours will be displayed.
-1. Selecting **sources**. Is the user exploring all items collected or narrow it down to a certain predefined types of tweeters.
-1. Pick one item and isolate its trend plus **forecast** how it will be shared in the future.
+1. Defining **share velocity**, ie. how many times the url has been shared per hour.
+1. Defining **time period** by setting how many hours will be displayed.
+1. Selecting **sources**. Narrowing down the sources to certain predefined types of tweeters.
+1. You can also pick one item and isolate its trend plus **forecast** how it will be shared in the future.
 
 --- x:2000 y:7500 z:2 rot:0 scale:2
 
@@ -69,7 +69,7 @@ p1 <- trendplot(pr, s[1,]); p2 <- trendplot(pr, s[2,]); multiplot(p1, p2)
 
 ## 4. Forecasting
         
-You can also pick **indvidual items** explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. Also the 95% respective 80% confindence intervals are plotted.
+You can also pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. The 95% respective 80% confidence intervals are plotted.
 
 ![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
 
