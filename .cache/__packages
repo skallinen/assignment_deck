@@ -1,0 +1,10 @@
+base
+slidify
+knitr
+dplyr
+lubridate
+ggplot2
+zoo
+timeDate
+forecast
+xts

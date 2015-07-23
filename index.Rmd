@@ -1,0 +1,256 @@
+---
+title       : Content Trend Explorer and Forecaster
+subtitle    : Developing Data Products Coursera Course
+author      : Sami Kallinen
+job         : Student
+framework   : impressjs        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+
+--- x:-1000 y:0 scale:5
+
+
+# Exploring Tactical Content Trends and Forecasts  
+## Developing Data Products Assignment*  
+## Coursera Course by John Hopkings University    
+
+*presentation by sami kallinen*
+</br>
+</br>
+</br>
+
+
+
+<span class="footnote">* The Assignment:
+"OK, you've made your shiny app, now it's time to make your pitch. You get 5 slides (inclusive of the title slide)  to pitch a your app. You're going to create a web page using Slidify or Rstudio Presenter with an html5 slide deck."
+</span>
+
+
+---  x:0 y:2500 scale:4
+## 1. Why?  
+        
+In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This app was created as an experiment in the search of such tools. 
+
+
+--- x:1500 y:4500 scale:3
+
+## 2. What?
+        
+The [**Content Trend Explorer and Forecaster**](http://sakal.li:3838/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
+
+1. Defining minimum and maximum values for item **share count**.
+1. Defining **share velocity**, ie. how many times the url has been shared per hourl.
+1. Defining **timeperdiod** by setting how many hours will be displayed.
+1. Selecting **sources**. Is the user exploring all items collected or narrow it down to a certain predefined types of tweeters.
+1. Pick one item and isolate its trend plus **forecast** how it will be shared in the future.
+
+--- x:2000 y:7500 z:2 rot:0 scale:2
+
+## 3. How?
+        
+You can **isolate interesting items** by dynamically filtering them out of the data. The upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. The lower is limited to max 1000 shares and min 28 velocity.
+
+
+```{r echo=FALSE,message=FALSE,fig.width=12}
+library(dplyr)
+library(ggplot2)
+pr <- readRDS("pr.Rda")
+
+# Multiple plot function
+#
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
+# - cols:   Number of columns in layout
+# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
+#
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+# then plot 1 will go in the upper left, 2 will go in the upper right, and
+# 3 will go all the way across the bottom.
+#
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+        library(grid)
+        
+        # Make a list from the ... arguments and plotlist
+        plots <- c(list(...), plotlist)
+        
+        numPlots = length(plots)
+        
+        # If layout is NULL, then use 'cols' to determine layout
+        if (is.null(layout)) {
+                # Make the panel
+                # ncol: Number of columns of plots
+                # nrow: Number of rows needed, calculated from # of cols
+                layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                                 ncol = cols, nrow = ceiling(numPlots/cols))
+        }
+        
+        if (numPlots==1) {
+                print(plots[[1]])
+                
+        } else {
+                # Set up the page
+                grid.newpage()
+                pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+                
+                # Make each plot, in the correct location
+                for (i in 1:numPlots) {
+                        # Get the i,j matrix positions of the regions that contain this subplot
+                        matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+                        
+                        print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                                        layout.pos.col = matchidx$col))
+                }
+        }
+}
+
+trendplot <- function(pr, settings) {
+s <- settings
+url_selection <- filter(pr,
+                        # timestamp > now()-hours(7),
+                        # timestamp < now(),
+                        # as.integer(nameList) %in% s$sources,
+                        !grepl('https://twitter.com.*',
+                               url),
+                        shareCount > s$sCmin,
+                        shareCount < s$sCmax,
+                        velocity > s$velocity)
+
+
+p <- ggplot(url_selection, 
+            aes(x=timestamp,
+                y=shareCount,
+                colour=title_short,
+                group=title_short)) +
+        geom_line() +
+        geom_point() + 
+        theme(plot.background = element_rect(fill = '#DBF5F8', 
+                                             colour = '#DBF5F8'))
+
+nurls <- length(unique(url_selection$url))
+if(nurls >100 ) p <- p + theme(legend.position="none")
+
+p
+}
+
+
+s <- data.frame(sCmax=c(5000,1000), sCmin=50, velocity=c(10,28))
+#s <- s[1,]
+p1 <- trendplot(pr, s[1,])
+p2 <- trendplot(pr, s[2,])
+
+# print(p1)        
+
+multiplot(p1, p2)
+
+```
+
+
+--- x:8000 y:-1200 rot:160 scale:1
+
+## 4. Forecasting
+        
+You can also pick **indvidual items** explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. Also the 95% respective 80% confindence intervals are plotted.
+
+```{r echo=FALSE,message=FALSE,fig.width=12}
+
+extractForecastData <- function(fcast, ts) {
+        tf <- time(fcast$x)
+        tf_start <- min(tf)
+        tf_end <- max(tf)
+
+        
+        to_start <- min(time(ts))
+        to_end <- max(time(ts))
+        
+        step <- (as.numeric(to_end)-as.numeric(to_start))/(as.numeric(tf_end)-as.numeric(tf_start))
+        o_time <- fit_time <- lapply(time(ts), function(x) as.POSIXct(as.numeric(x), origin="1970-01-01 UTC", tz="UTC"))
+
+        dt <- data.frame(timestamp=unlist(o_time), count=ts)
+        dt$type <- factor("observed")
+        
+        
+        fit_time <- as.numeric(time(tf))*step+as.numeric(to_start)
+        fit_time <- as.POSIXct(fit_time, 
+                               origin="1970-01-01 UTC", 
+                               tz="UTC")
+        fit <- data.frame(timestamp=as.POSIXct(fit_time),count=as.numeric(fcast$fitted))
+        fit$type <- factor("fitted")        
+        dt <- rbind(dt,fit)
+        dt$forecast <- NA
+        dt$lo80 <- NA
+        dt$hi80 <- NA
+        dt$lo95 <- NA
+        dt$hi95 <- NA
+        
+        dffcst<-data.frame(fcast)
+        dffcst$timestamp<-as.numeric(rownames(dffcst))
+        dffcst$timestamp <- as.numeric(dffcst$timestamp)*step+as.numeric(to_start)
+        dffcst$timestamp <- as.POSIXct(dffcst$timestamp, 
+                   origin="1970-01-01 UTC", 
+                   tz="UTC")
+        names(dffcst)<-c('forecast',
+                         'lo80',
+                         'hi80',
+                         'lo95',
+                         'hi95',
+                         'timestamp')
+        dffcst$type <- NA
+        dffcst$count <- NA
+#        dffcst <- select(dffcst,timestamp,count,type,forecast,lo80,hi80,lo95,hi95)
+        
+        dtm<-rbind(dt,dffcst)
+        dtm$timestamp <- as.POSIXct(dtm$timestamp, 
+           origin="1970-01-01 UTC", 
+           tz="UTC")
+        dtm
+        
+}
+
+
+
+calculateSingleUrl <- function(pr_sel, pr) {
+        library(forecast)
+        library(xts)
+        #pr_sel <- pr %>% filter(title == f_title)
+        pr_fc <- select(pr_sel, timestamp, shareCount) %>% arrange(timestamp)
+        #"timestamp"   "velocity"    "nameList"    "url"         "shareCount" 
+        #[6] "url_short"   "title"       "title_short"
+#        if(nrow(pr_fc) > 50) {
+		cat(paste("Size\n", dim(pr_fc)), file=stderr())
+	        ts <- xts(pr_sel$shareCount, order.by = pr_sel$timestamp ) 
+	        fit <- ets(ts,model="ZZZ")
+	        fcast <- forecast(fit, h=15)
+                d <- extractForecastData(fcast, ts)
+#	} else {
+#		d <- pr_fc 
+
+#	}
+        d
+}
+
+
+
+
+pr_url <- pr %>% filter(grepl('^Welcome*',title)) %>% arrange(shareCount)
+pr_url$url <- as.factor(pr_url$url)
+occurances <- table(pr_url$url)
+o <- data.frame(occurances)
+o <- o %>% filter(Freq == max(occurances))
+pr_url <- pr_url %>% filter(url == o$Var1)
+singleU <- calculateSingleUrl(pr_url, pr)
+
+
+ggplot(data=singleU, aes(x=timestamp, y=count, col=type)) + 
+                geom_line()+
+        	geom_ribbon(aes(x=timestamp, ymin=lo95,ymax=hi95),alpha=.1)+
+        	geom_ribbon(aes(x=timestamp,ymin=lo80,ymax=hi80),alpha=.1)+
+        	geom_line(aes(y=forecast)) +
+                theme(plot.background = element_rect(fill = '#DBF5F8', 
+                                                     colour = '#DBF5F8'))
+```
+
+
+[Go to the app!](http://sakal.li:3838/shinyapp)
+
