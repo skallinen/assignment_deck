@@ -39,7 +39,7 @@ In a world of increasing **complexity and fragmentation**, with a plethora of **
 
 ## 2. What?
         
-The [**Content Trend Explorer and Forecaster**](http://sakal.li:3838/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
+The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
 
 1. Defining minimum and maximum values for item **share count**.
 1. Defining **share velocity**, ie. how many times the url has been shared per hourl.
@@ -54,7 +54,15 @@ The [**Content Trend Explorer and Forecaster**](http://sakal.li:3838/shinyapp) l
 You can **isolate interesting items** by dynamically filtering them out of the data. The upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. The lower is limited to max 1000 shares and min 28 velocity.
 
 
-![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
+
+
+
+```r
+s <- data.frame(sCmax=c(5000,1000), sCmin=50, velocity=c(10,28))
+p1 <- trendplot(pr, s[1,]); p2 <- trendplot(pr, s[2,]); multiplot(p1, p2)
+```
+
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
 
 
 --- x:8000 y:-1200 rot:160 scale:1
@@ -63,8 +71,8 @@ You can **isolate interesting items** by dynamically filtering them out of the d
         
 You can also pick **indvidual items** explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. Also the 95% respective 80% confindence intervals are plotted.
 
-![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
 
 
-[Go to the app!](http://sakal.li:3838/shinyapp)
+[Go to the app!](http://sakal.li/shinyapp)
 

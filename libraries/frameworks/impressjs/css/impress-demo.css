@@ -264,6 +264,11 @@ p {
         font-size: 24px;
 }
 
+pre {
+font-family: "Courier New", Courier, monospace;
+font-size: 12px ;
+}
+
 .footnote {
     font-size: 18px;
 }

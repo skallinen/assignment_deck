@@ -133,16 +133,11 @@ if(nurls >100 ) p <- p + theme(legend.position="none")
 
 p
 }
+```
 
-
+```{r message=FALSE,fig.width=12}
 s <- data.frame(sCmax=c(5000,1000), sCmin=50, velocity=c(10,28))
-#s <- s[1,]
-p1 <- trendplot(pr, s[1,])
-p2 <- trendplot(pr, s[2,])
-
-# print(p1)        
-
-multiplot(p1, p2)
+p1 <- trendplot(pr, s[1,]); p2 <- trendplot(pr, s[2,]); multiplot(p1, p2)
 
 ```
 

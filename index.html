@@ -61,7 +61,7 @@
     
     data-scale="3">
  <h2>2. What?</h2>
- <p>The <a href="http://sakal.li:3838/shinyapp"><strong>Content Trend Explorer and Forecaster</strong></a> let&#39;s you explore data about how different content items are shared on social media. You can <strong>apply different filters</strong> to explore different aspects of the trending item. Filters include the following:</p>
+ <p>The <a href="http://sakal.li/shinyapp"><strong>Content Trend Explorer and Forecaster</strong></a> let&#39;s you explore data about how different content items are shared on social media. You can <strong>apply different filters</strong> to explore different aspects of the trending item. Filters include the following:</p>
 
 <ol>
 <li>Defining minimum and maximum values for item <strong>share count</strong>.</li>
@@ -81,7 +81,11 @@
  <h2>3. How?</h2>
  <p>You can <strong>isolate interesting items</strong> by dynamically filtering them out of the data. The upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. The lower is limited to max 1000 shares and min 28 velocity.</p>
 
-<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+<pre><code class="r">s &lt;- data.frame(sCmax=c(5000,1000), sCmin=50, velocity=c(10,28))
+p1 &lt;- trendplot(pr, s[1,]); p2 &lt;- trendplot(pr, s[2,]); multiplot(p1, p2)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
 
 </div>
 <div id="slide-5" class="step " 
@@ -93,9 +97,9 @@
  <h2>4. Forecasting</h2>
  <p>You can also pick <strong>indvidual items</strong> explore them separately and <strong>forecast</strong> how they will be shared in the future. The method used is <strong>exponential smoothing</strong>. Also the 95% respective 80% confindence intervals are plotted.</p>
 
-<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
 
-<p><a href="http://sakal.li:3838/shinyapp">Go to the app!</a></p>
+<p><a href="http://sakal.li/shinyapp">Go to the app!</a></p>
 
 </div>
  
