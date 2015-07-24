@@ -69,7 +69,7 @@ p1 <- trendplot(pr, s[1,]); p2 <- trendplot(pr, s[2,]); multiplot(p1, p2)
 
 ## 4. Forecasting
         
-The app also lets you pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. Not only the forecast but, also the 95% respective 80% confidence intervals are plotted.
+The app also lets you pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. Not only the forecast but also the 95% respective 80% confidence intervals are plotted.
 
 ![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
 
