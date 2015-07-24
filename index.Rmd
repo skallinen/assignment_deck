@@ -32,7 +32,7 @@ knit        : slidify::knit2slides
 ---  x:0 y:2500 scale:4
 ## 1. Why?  
         
-In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This app was created as an experiment in the search of such tools. 
+In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This app was created as a proof of conceptfor one such tools. 
 
 
 --- x:1500 y:4500 scale:3
@@ -51,7 +51,7 @@ The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's 
 
 ## 3. How?
         
-You can **isolate interesting items** by dynamically filtering them out of the data. The upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. The lower is limited to max 1000 shares and min 28 velocity.
+The main task in the app is to **isolate interesting items** by dynamically filtering them out of the data. There are multiple "levers". As an example the upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. Not very much help. By filtering out you'll find the interesting items. The lower is limited to max 1000 shares and min 28 velocity.
 
 
 ```{r echo=FALSE,message=FALSE,fig.width=12}
@@ -150,7 +150,7 @@ p1 <- trendplot(pr, s[1,]); p2 <- trendplot(pr, s[2,]); multiplot(p1, p2)
 
 ## 4. Forecasting
         
-You can also pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. The 95% respective 80% confidence intervals are plotted.
+The app also lets you pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. The 95% respective 80% confidence intervals are plotted.
 
 ```{r echo=FALSE,message=FALSE,fig.width=12}
 
@@ -251,5 +251,5 @@ ggplot(data=singleU, aes(x=timestamp, y=count, col=type)) +
 ```
 
 
-[Go to the app!](http://sakal.li/shinyapp)
+[Please try the app here!](http://sakal.li/shinyapp)
 
