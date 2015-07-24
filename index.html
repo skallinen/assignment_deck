@@ -73,13 +73,13 @@
 
 </div>
 <div id="slide-4" class="step " 
-  data-x="2000" data-y="7500" data-z="2" 
+  data-x="2000" data-y="7500" data-z="10" 
     data-rotate="0" 
     
     
     data-scale="2">
  <h2>3. How?</h2>
- <p>The main task in the app is to <strong>isolate interesting items</strong> by dynamically filtering them out of the data. There are multiple &quot;levers&quot;. As an example the upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. Not very much help. By filtering out you&#39;ll find the interesting items. The lower is limited to max 1000 shares and min 28 velocity.</p>
+ <p>Your task in the app is to <strong>isolate interesting items</strong>. The upper plot contains items shared less than 5000 times with a velocity of at least 10 shares/h. Not much help, is it? By toying with the &quot;levers&quot; you&#39;ll find the interesting items. The plot below has max set to 1000 shares and velocity to 28.</p>
 
 <pre><code class="r">s &lt;- data.frame(sCmax=c(5000,1000), sCmin=50, velocity=c(10,28))
 p1 &lt;- trendplot(pr, s[1,]); p2 &lt;- trendplot(pr, s[2,]); multiplot(p1, p2)
@@ -95,7 +95,7 @@ p1 &lt;- trendplot(pr, s[1,]); p2 &lt;- trendplot(pr, s[2,]); multiplot(p1, p2)
     
     data-scale="1">
  <h2>4. Forecasting</h2>
- <p>The app also lets you pick <strong>indvidual items</strong>, explore them separately and <strong>forecast</strong> how they will be shared in the future. The method used is <strong>exponential smoothing</strong>. The 95% respective 80% confidence intervals are plotted.</p>
+ <p>The app also lets you pick <strong>indvidual items</strong>, explore them separately and <strong>forecast</strong> how they will be shared in the future. The method used is <strong>exponential smoothing</strong>. Not only the forecast but, also the 95% respective 80% confidence intervals are plotted.</p>
 
 <p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
 

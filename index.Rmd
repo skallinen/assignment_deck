@@ -47,11 +47,11 @@ The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's 
 1. Selecting **sources**. Narrowing down the sources to certain predefined types of tweeters.
 1. You can also pick one item and isolate its trend plus **forecast** how it will be shared in the future.
 
---- x:2000 y:7500 z:2 rot:0 scale:2
+--- x:2000 y:7500 z:10 rot:0 scale:2
 
 ## 3. How?
         
-The main task in the app is to **isolate interesting items** by dynamically filtering them out of the data. There are multiple "levers". As an example the upper graph plots all items that have been shared less that 5000 times and have the share velocity of at least 10 shares per hour. Not very much help. By filtering out you'll find the interesting items. The lower is limited to max 1000 shares and min 28 velocity.
+Your task in the app is to **isolate interesting items**. The upper plot contains items shared less than 5000 times with a velocity of at least 10 shares/h. Not much help, is it? By toying with the "levers" you'll find the interesting items. The plot below has max set to 1000 shares and velocity to 28.
 
 
 ```{r echo=FALSE,message=FALSE,fig.width=12}
@@ -150,7 +150,7 @@ p1 <- trendplot(pr, s[1,]); p2 <- trendplot(pr, s[2,]); multiplot(p1, p2)
 
 ## 4. Forecasting
         
-The app also lets you pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. The 95% respective 80% confidence intervals are plotted.
+The app also lets you pick **indvidual items**, explore them separately and **forecast** how they will be shared in the future. The method used is **exponential smoothing**. Not only the forecast but also the 95% respective 80% confidence intervals are plotted.
 
 ```{r echo=FALSE,message=FALSE,fig.width=12}
 
