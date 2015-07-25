@@ -32,7 +32,13 @@ knit        : slidify::knit2slides
 ---  x:0 y:2500 scale:4
 ## 1. Why?  
         
-In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This app was created as a proof of conceptfor one such tools. 
+In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This app was created as a proof of conceptfor one such tools.  
+
+Possible use cases:  
+- Media professionals can analyse the data and make tactical minute by minute **editorial decisions** based on their fidnings.
+- Media producers can track their own content, **benchmark** against competitors or programmatically use the data to **optimize** their own publishing.
+- The app could be developed into a **content search** or recommendation engine.
+
 
 
 --- x:1500 y:4500 scale:3
@@ -47,7 +53,7 @@ The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's 
 1. Selecting **sources**. Narrowing down the sources to certain predefined types of tweeters.
 1. You can also pick one item and isolate its trend plus **forecast** how it will be shared in the future.
 
---- x:2000 y:7500 z:10 rot:0 scale:2
+--- x:2000 y:6200 rot:0 scale:2
 
 ## 3. How?
         
