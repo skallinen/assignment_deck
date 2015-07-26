@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 
 # Exploring Tactical Content Trends and Forecasts  
 ## Developing Data Products Assignment*  
-## Coursera Course by John Hopkings University    
+## Coursera Course by Johns Hopkins University    
 
 *presentation by sami kallinen*
 </br>
@@ -45,7 +45,7 @@ Possible use cases:
 
 ## 2. What?
         
-The [**Tactical Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
+The [**Tactical Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of a trending item. Filters include the following:
 
 1. Defining minimum and maximum values for item **share count**.
 1. Defining **share velocity**, ie. how many times the url has been shared per hour.

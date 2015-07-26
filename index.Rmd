@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 
 # Exploring Tactical Content Trends and Forecasts  
 ## Developing Data Products Assignment*  
-## Coursera Course by John Hopkings University    
+## Coursera Course by Johns Hopkins University    
 
 *presentation by sami kallinen*
 </br>
