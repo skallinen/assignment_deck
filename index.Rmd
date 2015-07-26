@@ -25,17 +25,17 @@ knit        : slidify::knit2slides
 
 
 <span class="footnote">* The Assignment:
-"OK, you've made your shiny app, now it's time to make your pitch. You get 5 slides (inclusive of the title slide)  to pitch a your app. You're going to create a web page using Slidify or Rstudio Presenter with an html5 slide deck."
+"OK, you've made your shiny app, now it's time to make your pitch. You get 5 slides (inclusive of the title slide)  to pitch your app. You're going to create a web page using Slidify or Rstudio Presenter with an html5 slide deck."
 </span>
 
 
 ---  x:0 y:2500 scale:4
 ## 1. Why?  
         
-In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This simple app is an experiment to figure out how such tools might work.
+In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools to help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This simple app is an experiment to figure out how such tools might work.
 
 Possible use cases:  
-- Media professionals can analyse the data and make tactical minute by minute **editorial decisions** based on their fidnings.
+- Media professionals can analyse the data and make tactical minute by minute **editorial decisions** based on their findings.
 - Media producers can track their own content, **benchmark** against competitors or programmatically use the data to **optimize** their own publishing.
 - The app could be developed into a **content search** or recommendation engine.
 
