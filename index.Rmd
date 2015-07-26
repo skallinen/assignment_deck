@@ -32,7 +32,7 @@ knit        : slidify::knit2slides
 ---  x:0 y:2500 scale:4
 ## 1. Why?  
         
-In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This app was created as a proof of conceptfor one such tools.  
+In a world of increasing **complexity and fragmentation**, with a plethora of **content** being published every second, we need new tools help us to **sift through this abundance** and make sense of the world. For any such tools, data is going to be central. This simple app is an experiment to figure out how such tools might work.
 
 Possible use cases:  
 - Media professionals can analyse the data and make tactical minute by minute **editorial decisions** based on their fidnings.
@@ -45,7 +45,7 @@ Possible use cases:
 
 ## 2. What?
         
-The [**Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of the trending item. Filters include the following:
+The [**Tactical Content Trend Explorer and Forecaster**](http://sakal.li/shinyapp) let's you explore data about how different content items are shared on social media. You can **apply different filters** to explore different aspects of a trending item. Filters include the following:
 
 1. Defining minimum and maximum values for item **share count**.
 1. Defining **share velocity**, ie. how many times the url has been shared per hour.
